@@ -1,159 +1,373 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v3.json",
   "description": "Data analysis pokemon!",
-
-  "data": {"url": "https://raw.githubusercontent.com/CammieVolsci/DataVisUFF/master/Histograma/pokemon.csv"}, 
-
+  "data": {
+    "url": "https://raw.githubusercontent.com/CammieVolsci/DataVisUFF/master/Histograma/pokemon.csv"
+  },
+  "title": {
+    "text": "--//-- Comparando status dos pokémons --//--",
+    "anchor": "middle",
+    "fontSize": 18,
+    "font": "calibri",
+    "color": "#7D7D7D"
+  },
   "columns": 2,
-  "concat": 
-  [{
-      "selection": 
-      {
-        "brush": {"type": "interval"}
+  "concat": [
+    {
+      "title": {
+        "text": "Base total por número da pokedex",
+        "anchor": "middle"
+      },
+      "selection": {
+        "brush": {
+          "type": "interval"
+        }
       },
       "mark": "circle",
       "width": 450,
       "height": 500,
-
-      "encoding": 
-      {
-        "y": {"field": "base_total", "type": "quantitative", "title": "Base Total Status", "scale": {"domain": [100, 800]}},
-        "x": {"field": "pokedex_number", "type": "quantitative", "title": "Número Pokedex", "scale": {"domain": [0, 800]}},
-        
-        "color": 
-        {   
+      "encoding": {
+        "header": {
+          "titleFontSize": 20,
+          "labelFontSize": 15
+        },
+        "y": {
+          "field": "base_total",
+          "type": "quantitative",
+          "title": "Base Total Status",
+          "scale": {
+            "domain": [
+              100,
+              800
+            ]
+          }
+        },
+        "x": {
+          "field": "pokedex_number",
+          "type": "quantitative",
+          "title": "Número Pokedex",
+          "scale": {
+            "domain": [
+              0,
+              800
+            ]
+          }
+        },
+        "color": {
           "field": "generation",
           "type": "ordinal",
-          "title": "geração",
-          "scale": {"scheme": "dark2"}
-
+          "title": "Geração",
+          "scale": {
+            "scheme": "dark2"
+          }
         },
-        "tooltip": 
-        [
-          {"field": "type1", "type": "nominal", "title": "tipo 1"},
-          {"field": "type2", "type": "nominal", "title": "tipo 2"},
-          {"field": "name", "type": "nominal", "title": "nome pokemon"}
+        "tooltip": [
+          {
+            "field": "type1",
+            "type": "nominal",
+            "title": "tipo 1"
+          },
+          {
+            "field": "type2",
+            "type": "nominal",
+            "title": "tipo 2"
+          },
+          {
+            "field": "name",
+            "type": "nominal",
+            "title": "nome pokemon"
+          }
         ]
-        
       }
-  },
-
-
-  {
-     "transform": [{"filter": {"selection": "brush"}}],
-
-     "selection":     
-      {
-        "grid": 
-        {
-          "type": "interval", "bind": "scales"
-        },
-        "selecao":
-        {
-          "type": "single",
-          "fields": ["type1","type2"],
-          "bind": {"input": "select", "options": [null,"bug","dark","dragon","electric","fairy","fighting","fire","flying","ghost","grass","ground","ice","normal","poison","psychic","rock","steel","water"]}
-        }
-        
+    },
+    {
+      "title": {
+        "text": "Base total por número da pokedex com brush",
+        "anchor": "middle"
       },
-
+      "transform": [
+        {
+          "filter": {
+            "selection": "brush"
+          }
+        }
+      ],
+      "selection": {
+        "grid": {
+          "type": "interval",
+          "bind": "scales"
+        },
+        "poke": {
+          "type": "single",
+          "fields": [
+            "type1"
+          ],
+          "bind": {
+            "input": "select",
+            "options": [
+              null,
+              "bug",
+              "dark",
+              "dragon",
+              "electric",
+              "fairy",
+              "fighting",
+              "fire",
+              "flying",
+              "grass",
+              "ghost",
+              "ground",
+              "ice",
+              "normal",
+              "poison",
+              "psychic",
+              "rock",
+              "steel",
+              "water"
+            ]
+          }
+        }
+      },
       "mark": "circle",
       "width": 450,
       "height": 500,
-
-      "encoding": 
-      {
-        "y": {"field": "base_total", "type": "quantitative", "title": "Base Total Status"},
-        "x": {"field": "pokedex_number", "type": "quantitative", "title": "Número Pokedex"},
-        
-    
-        "color": 
-        {
-          "condition":
-          {
-            "selection": "selecao",
+      "encoding": {
+        "y": {
+          "field": "base_total",
+          "type": "quantitative",
+          "title": "Base Total Status"
+        },
+        "x": {
+          "field": "pokedex_number",
+          "type": "quantitative",
+          "title": "Número Pokedex"
+        },
+        "color": {
+          "condition": {
+            "selection": "poke",
             "field": "generation",
             "type": "ordinal",
-            "title": "geração",
-            "scale": {"scheme": "dark2"}
+            "title": "Geração",
+            "scale": {
+              "scheme": "dark2"
+            }
           },
-          
           "value": "grey"
         },
-
-        "tooltip": 
-        [
-          {"field": "type1", "type": "nominal", "title": "tipo 1"},
-          {"field": "type2", "type": "nominal", "title": "tipo 2"},
-          {"field": "name", "type": "nominal", "title": "nome pokemon"}
+        "tooltip": [
+          {
+            "field": "type1",
+            "type": "nominal",
+            "title": "tipo 1"
+          },
+          {
+            "field": "type2",
+            "type": "nominal",
+            "title": "tipo 2"
+          },
+          {
+            "field": "name",
+            "type": "nominal",
+            "title": "nome pokemon"
+          }
         ]
       }
     },
-
-
-
     {
-     "transform": [{"filter": {"selection": "brush"}}],
-
+      "title": {
+        "text": "Ataque vs Defesa e Velocidade",
+        "anchor": "middle"
+      },
+      "transform": [
+        {
+          "filter": {
+            "selection": "brush"
+          }
+        }
+      ],
+      "selection": {
+        "grid": {
+          "type": "interval",
+          "bind": "scales"
+        },
+        "poke": {
+          "type": "single",
+          "fields": [
+            "type1"
+          ],
+          "bind": {
+            "input": "select",
+            "options": [
+              null,
+              "bug",
+              "dark",
+              "dragon",
+              "electric",
+              "fairy",
+              "fighting",
+              "fire",
+              "flying",
+              "grass",
+              "ghost",
+              "ground",
+              "ice",
+              "normal",
+              "poison",
+              "psychic",
+              "rock",
+              "steel",
+              "water"
+            ]
+          }
+        }
+      },
       "mark": "circle",
       "width": 450,
       "height": 500,
-
-      "encoding": 
-      {
-        "x": {"field": "attack", "type": "quantitative", "title": "Ataque"},
-        "y": {"field": "defense", "type": "quantitative", "title": "Defesa"},
-        "size": {"field": "hp", "type": "quantitative", "title": "HP"},
-    
-        "color": 
-        {
-          "field": "generation",
-          "type": "nominal",
-          "title": "geração",
-          "scale": {"scheme": "dark2"}
+      "encoding": {
+        "x": {
+          "field": "attack",
+          "type": "quantitative",
+          "title": "Ataque"
         },
-
-        "tooltip": 
-        [
-          {"field": "type1", "type": "nominal", "title": "tipo 1"},
-          {"field": "type2", "type": "nominal", "title": "tipo 2"},
-          {"field": "name", "type": "nominal", "title": "nome pokemon"}
+        "y": {
+          "field": "defense",
+          "type": "quantitative",
+          "title": "Defesa"
+        },
+        "size": {
+          "field": "hp",
+          "type": "quantitative",
+          "title": "HP"
+        },
+        "color": {
+          "condition": {
+            "selection": "poke",
+            "field": "generation",
+            "type": "ordinal",
+            "title": "Geração",
+            "scale": {
+              "scheme": "dark2"
+            }
+          },
+          "value": "grey"
+        },
+        "tooltip": [
+          {
+            "field": "type1",
+            "type": "nominal",
+            "title": "tipo 1"
+          },
+          {
+            "field": "type2",
+            "type": "nominal",
+            "title": "tipo 2"
+          },
+          {
+            "field": "name",
+            "type": "nominal",
+            "title": "nome pokemon"
+          }
         ]
       }
     },
-
     {
-     "transform": [{"filter": {"selection": "brush"}}],
-
+      "title": {
+        "text": "Ataque Especial vs Defesa Especial e Health Points (HP)",
+        "anchor": "middle"
+      },
+      "transform": [
+        {
+          "filter": {
+            "selection": "brush"
+          }
+        }
+      ],
+      "selection": {
+        "grid": {
+          "type": "interval",
+          "bind": "scales"
+        },
+        "poke": {
+          "type": "single",
+          "fields": [
+            "type1"
+          ],
+          "bind": {
+            "input": "select",
+            "options": [
+              null,
+              "bug",
+              "dark",
+              "dragon",
+              "electric",
+              "fairy",
+              "fighting",
+              "fire",
+              "flying",
+              "grass",
+              "ghost",
+              "ground",
+              "ice",
+              "normal",
+              "poison",
+              "psychic",
+              "rock",
+              "steel",
+              "water"
+            ]
+          }
+        }
+      },
       "mark": "circle",
       "width": 450,
       "height": 500,
-
-      "encoding": 
-      {
-        "x": {"field": "sp_attack", "type": "quantitative", "title": "Ataque especial"},
-        "y": {"field": "sp_defense", "type": "quantitative", "title": "Defesa especial"},
-        "size": {"field": "speed", "type": "quantitative","title": "Velocidade"},
-    
-        "color": 
-        {
-          "field": "generation",
-          "type": "nominal",
-          "title": "geração",
-          "scale": {"scheme": "dark2"}
+      "encoding": {
+        "x": {
+          "field": "sp_attack",
+          "type": "quantitative",
+          "title": "Ataque especial"
         },
-
-        "tooltip": 
-        [
-          {"field": "type1", "type": "nominal", "title": "tipo 1"},
-          {"field": "type2", "type": "nominal", "title": "tipo 2"},
-          {"field": "name", "type": "nominal", "title": "nome pokemon"}
+        "y": {
+          "field": "sp_defense",
+          "type": "quantitative",
+          "title": "Defesa especial"
+        },
+        "size": {
+          "field": "speed",
+          "type": "quantitative",
+          "title": "Velocidade"
+        },
+        "color": {
+          "condition": {
+            "selection": "poke",
+            "field": "generation",
+            "type": "ordinal",
+            "title": "Geração",
+            "scale": {
+              "scheme": "dark2"
+            }
+          },
+          "value": "grey"
+        },
+        "tooltip": [
+          {
+            "field": "type1",
+            "type": "nominal",
+            "title": "tipo 1"
+          },
+          {
+            "field": "type2",
+            "type": "nominal",
+            "title": "tipo 2"
+          },
+          {
+            "field": "name",
+            "type": "nominal",
+            "title": "nome pokemon"
+          }
         ]
       }
     }
-
-    
-
-
   ]
 }
