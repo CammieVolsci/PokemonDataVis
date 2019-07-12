@@ -175,7 +175,7 @@
     },
     {
       "title": {
-        "text": "Ataque vs Defesa e Velocidade",
+        "text": "Ataque vs Defesa e Health Points (HP)",
         "anchor": "middle"
       },
       "transform": [
@@ -273,7 +273,7 @@
     },
     {
       "title": {
-        "text": "Ataque Especial vs Defesa Especial e Health Points (HP)",
+        "text": "Ataque Especial vs Defesa Especial e Velocidade",
         "anchor": "middle"
       },
       "transform": [
