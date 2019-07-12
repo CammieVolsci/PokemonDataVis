@@ -7,16 +7,11 @@
 <script src="https://cdn.jsdelivr.net/npm/vega-embed@4"></script>
 
 <title>Pokemon data analysis</title>
-<link rel="stylesheet" href="dataAnalysis.css">
 </head>
-
-
 
 <select name="List1" id="List1" onclick="GetVal()">
     <option value="0" selected="selected">Quantidade de pokemons</option>
     <option value="1">Base total & status</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
 </select>
 
 <div id="vis"></div>
@@ -28,14 +23,12 @@ switch (LSelect1.selectedIndex)
   case 0:
     const spec1 = "dataPokemon.json";
     vegaEmbed('#vis', spec1)
-      // result.view provides access to the Vega View API
       .then(result => console.log(result))
       .catch(console.warn);
     break;
   case 1:
     const spec2 = "dataPokemon2.json";
     vegaEmbed('#vis', spec2)
-      // result.view provides access to the Vega View API
       .then(result => console.log(result))
       break;
     }
