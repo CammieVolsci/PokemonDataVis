@@ -5,36 +5,15 @@
 <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-lite@3"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-embed@4"></script>
-
-<title>Pokemon data analysis</title>
+<title>Pokemon DataVis</title>
 </head>
-
-<select name="List1" id="List1" onclick="GetVal()">
-    <option value="0" selected="selected">Quantidade de pokemons</option>
-    <option value="1">Base total & status</option>
-</select>
 
 <div id="vis"></div>
 <script>
-function GetVal() {
-var LSelect1 = document.getElementById('List1');
-switch (LSelect1.selectedIndex)
-{
-  case 0:
-    const spec1 = "dataPokemon.json";
-    vegaEmbed('#vis', spec1)
+const spec = "dataPokemon.json";
+  	vegaEmbed('#vis', spec)
       .then(result => console.log(result))
-      .catch(console.warn);
-    break;
-  case 1:
-    const spec2 = "dataPokemon2.json";
-    vegaEmbed('#vis', spec2)
-      .then(result => console.log(result))
-      break;
-    }
-}
-  
+      .catch(console.warn);  
 </script>
-
 </body>
 </html>
