@@ -21,16 +21,45 @@
       "selection": {
         "brush": {
           "type": "interval"
+        },
+        "poke": {
+          "type": "single",
+          "fields": [
+            "type1"
+          ],
+          "bind": {
+            "input": "select",
+            "options": [
+              null,
+              "bug",
+              "dark",
+              "dragon",
+              "electric",
+              "fairy",
+              "fighting",
+              "fire",
+              "flying",
+              "grass",
+              "ghost",
+              "ground",
+              "ice",
+              "normal",
+              "poison",
+              "psychic",
+              "rock",
+              "steel",
+              "water"
+            ]
+          }
         }
       },
-      "mark": "circle",
+      "mark": {
+        "type": "point",
+        "filled": true
+      },
       "width": 450,
       "height": 500,
       "encoding": {
-        "header": {
-          "titleFontSize": 20,
-          "labelFontSize": 15
-        },
         "y": {
           "field": "base_total",
           "type": "quantitative",
@@ -54,12 +83,21 @@
           }
         },
         "color": {
-          "field": "generation",
+          "condition": {
+            "selection": "poke",
+            "field": "generation",
+            "type": "ordinal",
+            "title": "Geração",
+            "scale": {
+              "scheme": "dark2"
+            }
+          },
+          "value": "grey"
+        },
+        "shape": {
+          "field": "is_legendary",
           "type": "ordinal",
-          "title": "Geração",
-          "scale": {
-            "scheme": "dark2"
-          }
+          "title": "É lendário?"
         },
         "tooltip": [
           {
@@ -82,7 +120,7 @@
     },
     {
       "title": {
-        "text": "Base total por número da pokedex seleção do brush",
+        "text": "Base total por número da pokedex com pan e zoom",
         "anchor": "middle"
       },
       "transform": [
@@ -128,7 +166,10 @@
           }
         }
       },
-      "mark": "circle",
+      "mark": {
+        "type": "point",
+        "filled": true
+      },
       "width": 450,
       "height": 500,
       "encoding": {
@@ -153,6 +194,11 @@
             }
           },
           "value": "grey"
+        },
+        "shape": {
+          "field": "is_legendary",
+          "type": "ordinal",
+          "title": "É lendário?"
         },
         "tooltip": [
           {
@@ -221,7 +267,10 @@
           }
         }
       },
-      "mark": "circle",
+      "mark": {
+        "type": "point",
+        "filled": true
+      },
       "width": 450,
       "height": 500,
       "encoding": {
@@ -251,6 +300,11 @@
             }
           },
           "value": "grey"
+        },
+        "shape": {
+          "field": "is_legendary",
+          "type": "ordinal",
+          "title": "É lendário?"
         },
         "tooltip": [
           {
@@ -319,7 +373,10 @@
           }
         }
       },
-      "mark": "circle",
+      "mark": {
+        "type": "point",
+        "filled": true
+      },
       "width": 450,
       "height": 500,
       "encoding": {
@@ -349,6 +406,11 @@
             }
           },
           "value": "grey"
+        },
+        "shape": {
+          "field": "is_legendary",
+          "type": "ordinal",
+          "title": "É lendário?"
         },
         "tooltip": [
           {
